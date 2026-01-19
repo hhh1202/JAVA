@@ -16,10 +16,41 @@ public class Main {
 
         Chapter03 C03 = new Chapter03();
         C03.Third01();
+        System.out.println("===========02==========");
         C03.Third02();
+        System.out.println("===========03==========");
         C03.Third03();
+        System.out.println("===========06 비교 연산자==========");
+        C03.Third06();
+        System.out.println("===========07 논리 연산자==========");
+        C03.Third07();
+        System.out.println("===========08 비트 논리 연산자==========");
+        C03.Third08();
+        System.out.println("===========09==========");
+        C03.Third09();
+        System.out.println("===========10==========");
+        C03.Third10();
+        System.out.println("===========11==========");
+        C03.Third11();
 
-        System.out.println(System.getProperty("file.encoding"));
-        System.out.println("한글 테스트 가나다라마바사");
+        Equation Equ = new Equation();
+        System.out.println("2x + 8 = 0의 해, x는 " + Equ.EquationFirst(2,8));
+        System.out.println("5x + 30 = 0의 해, x는 " + Equ.EquationFirst(5, -30));
+        System.out.println("5x + 30 = 0의 해, x는 " + Equ.EquationFirst(7, 49));
+
+        System.out.println("===========test1===========");
+        Equ.test1();
+        System.out.println("===========test2===========");
+        Equ.test2();
+        System.out.println("===========test3===========");
+        Equ.test3();
+        System.out.println("===========test4===========");
+        Equ.test4();
+        System.out.println("===========test5===========");
+        Equ.test5();
+        System.out.println("===========test6===========");
+        Equ.test6();
+        System.out.println("===========test7===========");
+        Equ.test7();
     }
 }
