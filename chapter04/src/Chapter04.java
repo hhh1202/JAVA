@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Chapter04 {
     public void test1() {
         String grade = "B";
@@ -65,15 +66,40 @@ public class Chapter04 {
     }
 
     public void test5() {
-    for(int i = 0; i < 5; i++) {
-        for(int j = 0; j < 5; j++) {
-            System.out.print("*");
+        for(int i = 0; i <= 5; i++) {
+            for(int j = 0; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println("");
         }
-        System.out.println();
-    }
     }
 
+    Scanner scanner = new Scanner(System.in); // Scanner 생성
     public void test6() {
+        int count = 0;
+        while (true) {
+            System.out.println("---------------------------------");
+            System.out.println("1.예금 | 2. 출금 | 3. 잔고 | 4.종료");
+            System.out.println("선택> ");
+            String strNum = scanner.nextLine();
 
+            if(strNum.equals("1")) {
+                System.out.println("예금액> ");
+                String strNum2 = scanner.nextLine();
+                int value = Integer.parseInt(strNum2);
+                count += value;
+            } else if(strNum.equals("2")) {
+                System.out.println("출급액> ");
+                String strNum3 = scanner.nextLine();
+                int value2 = Integer.parseInt(strNum3);
+                count -= value2;
+            } else if(strNum.equals("3")) {
+                System.out.println("잔고> " + count);
+            }else if(strNum.equals("4")) {
+                System.out.println("프로그램 종료");
+                break;
+            }
+
+        }
     }
 }

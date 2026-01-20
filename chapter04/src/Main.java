@@ -25,5 +25,9 @@ public class Main {
         C04.test5();
         System.out.println("======test6=======");
         C04.test6();
+
+        addChapter04 addC04 = new addChapter04();
+        addC04.test1();
+
     }
 }
