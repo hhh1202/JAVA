@@ -1,26 +1,30 @@
 package com.mjc0115;
 
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
 public class Chapter05 {
     public void ch01() {
         int[] arr1;
         int[] arr2;
         int[] arr3;
 
-        arr1 = new int[] {1, 2, 3};
-        arr2 = new int[] {1, 2, 3};
+        arr1 = new int[]{1, 2, 3};
+        arr2 = new int[]{1, 2, 3};
         arr3 = arr2;
 
         System.out.println(arr1 == arr2);
         System.out.println(arr2 == arr3);
     }
 
-    public void ch02(){
+    public void ch02() {
         int[] intArray = null;
         //intArray[0] = 10;
 
         String str = null;
         //System.out.println("총 문자 수: " + str.length());
-        System.out.println(str + " " +intArray);
+        System.out.println(str + " " + intArray);
     }
 
     public void ch03() {
@@ -37,41 +41,41 @@ public class Chapter05 {
         String strVar1 = "홍길동";
         String strVar2 = "홍길동";
 
-        if(strVar1 == strVar2) {
+        if (strVar1 == strVar2) {
             System.out.println("strVar1과 strVar2는 참조가 같음");
         } else {
             System.out.println("strVar1과 strVar2는 참조가 다름");
         }
 
-        if(strVar1.equals(strVar2)){
+        if (strVar1.equals(strVar2)) {
             System.out.println("strVar1과 strVar2는 문자열이 같음");
         }
 
         String strVar3 = new String("홍길동");
         String strVar4 = new String("홍길동");
 
-        if(strVar3 == strVar4) {
+        if (strVar3 == strVar4) {
             System.out.println("strVar3과 strVar4는 참조가 같음");
         } else {
             System.out.println("strVar3과 strVar4는 참조가 다름");
         }
 
-        if(strVar3.equals(strVar4)) {
+        if (strVar3.equals(strVar4)) {
             System.out.println("strVar3가 strVar4는 문자열이 같음");
         }
     }
 
     public void ch05() {
         String hobby = "";
-        if(hobby.equals("")){
+        if (hobby.equals("")) {
             System.out.println("hobby 변수가 참조하는 String 객체는 빈 문자열");
         }
     }
 
-    public void ch06(){
+    public void ch06() {
         String ssn = "9506241230123";
         char sex = ssn.charAt(6);
-        switch(sex) {
+        switch (sex) {
             case '1':
             case '3':
                 System.out.println("남자입니다.");
@@ -83,17 +87,17 @@ public class Chapter05 {
         }
     }
 
-    public void ch07(){
+    public void ch07() {
         String ssn = "9506241230123";
         int length = ssn.length();
-        if(length == 13) {
+        if (length == 13) {
             System.out.println("주민등록번호 자릿수가 맞습니다.");
         } else {
             System.out.println("주민등록번호 자릿수가 틀립니다.");
         }
     }
 
-    public void ch08(){
+    public void ch08() {
         String oldStr = "자바 문자열은 불변입니다. 자바 문자열은 String입니다.";
         String newStr = oldStr.replace("자바", "JAVA");
 
@@ -101,7 +105,7 @@ public class Chapter05 {
         System.out.println(newStr);
     }
 
-    public void ch09(){
+    public void ch09() {
         String ssn = "880815-1234567";
 
         String firstNum = ssn.substring(0, 6);
@@ -111,7 +115,7 @@ public class Chapter05 {
         System.out.println(secondNum);
     }
 
-    public void ch10(){
+    public void ch10() {
         String subject = "자바 프로그래밍";
 
         int location = subject.indexOf("프로그래밍");
@@ -120,21 +124,21 @@ public class Chapter05 {
         System.out.println(substring);
 
         location = subject.indexOf("자바");
-        if(location != -1){
+        if (location != -1) {
             System.out.println("자바와 관련된 책이군요");
         } else {
             System.out.println("자바와 관련 없는 책이군요");
         }
 
         boolean result = subject.contains("자바");
-        if(result){
+        if (result) {
             System.out.println("자바와 관련된 책이군요");
         } else {
             System.out.println("자바와 관련 없는 책이군요");
         }
     }
 
-    public void ch11(){
+    public void ch11() {
         String board = "1,자바 학습,참조 타입 String을 학습합니다.,홍길동";
 
         String[] tokens = board.split(",");
@@ -145,13 +149,13 @@ public class Chapter05 {
         System.out.println("성명: " + tokens[3]);
         System.out.println();
 
-        for(int i=0; i<tokens.length; i ++){
+        for (int i = 0; i < tokens.length; i++) {
             System.out.println(tokens[i]);
         }
     }
 
     public void ch12() {
-        String[] season = { "Spring", "Summer", "Fall", "Winter"};
+        String[] season = {"Spring", "Summer", "Fall", "Winter"};
 
         System.out.println("season[0] : " + season[0]);
         System.out.println("season[1] : " + season[1]);
@@ -162,9 +166,9 @@ public class Chapter05 {
         System.out.println("season[1] : " + season[1]);
         System.out.println();
 
-        int[] scores = { 83, 90, 87};
+        int[] scores = {83, 90, 87};
         int sum = 0;
-        for(int i=0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
             sum += scores[i];
         }
         System.out.println("총합 : " + sum);
@@ -174,25 +178,25 @@ public class Chapter05 {
 
     public void ch13() {
         int[] scores;
-        scores = new int[] { 83, 90, 87};
+        scores = new int[]{83, 90, 87};
         int sum1 = 0;
-        for(int i=0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
             sum1 += scores[i];
         }
         System.out.println("총합 : " + sum1);
 
-        printItem( new int[] {83, 90, 87} );
+        printItem(new int[]{83, 90, 87});
     }
 
-    public static void printItem( int[] scores ){
-        for(int i=0; i<3; i++){
+    public static void printItem(int[] scores) {
+        for (int i = 0; i < 3; i++) {
             System.out.println("score[" + i + "]: " + scores[i]);
         }
     }
 
     public void ch14() {
         int[] arr1 = new int[3];
-        for(int i=0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
             System.out.println("arr1[" + i + "] : " + arr1[i] + ", ");
         }
         System.out.println();
@@ -201,13 +205,13 @@ public class Chapter05 {
         arr1[1] = 20;
         arr1[2] = 30;
 
-        for(int i=0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
             System.out.println("arr1[" + i + "] : " + arr1[i] + ", ");
         }
         System.out.println("\n");
 
         double[] arr2 = new double[3];
-        for(int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             System.out.println("arr2[" + i + "] : " + arr2[i] + ", ");
         }
         System.out.println();
@@ -215,20 +219,20 @@ public class Chapter05 {
         arr2[1] = 0.2;
         arr2[2] = 0.3;
 
-        for(int i=0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
             System.out.println("arr2[" + "]" + arr2[i] + ", ");
         }
         System.out.println("\n");
 
         String[] arr3 = new String[3];
-        for(int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             System.out.println("arr3[" + i + "] : " + arr3[i] + ", ");
         }
         System.out.println();
         arr3[0] = "1월";
         arr3[1] = "2월";
         arr3[2] = "3월";
-        for(int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             System.out.println("arr3[" + i + "] : " + arr3[i] + ", ");
         }
     }
@@ -236,7 +240,7 @@ public class Chapter05 {
     public void ch15() {
         int[] scores = {84, 90, 96};
         int sum = 0;
-        for(int i=0; i<scores.length; i++) {
+        for (int i = 0; i < scores.length; i++) {
             sum += scores[i];
         }
         System.out.println("총합 : " + sum);
@@ -244,10 +248,10 @@ public class Chapter05 {
         System.out.println("평균 : " + avg);
     }
 
-    public void ch16(){
+    public void ch16() {
         int[][] scores = {
-                { 80, 90, 96},
-                { 76, 88 }
+                {80, 90, 96},
+                {76, 88}
         };
         System.out.println("1차원 배열 길이(반의 수): " + scores.length);
         System.out.println("2차원 배열 길이(첫 번째 반의 학생 수): " + scores[0].length);
@@ -257,14 +261,14 @@ public class Chapter05 {
         System.out.println("scores[1][1]: " + scores[1][1]);
 
         int class1Sum = 0;
-        for(int i=0; i<scores[0].length; i++){
+        for (int i = 0; i < scores[0].length; i++) {
             class1Sum += scores[0][i];
         }
         double class1Avg = (double) class1Sum / scores[0].length;
         System.out.println("첫 번째 반의 평균 점수 : " + class1Avg);
 
         int class2Sum = 0;
-        for(int i=0; i<scores[1].length; i++){
+        for (int i = 0; i < scores[1].length; i++) {
             class2Sum += scores[1][i];
         }
         double class2Avg = (double) class2Sum / scores[1].length;
@@ -272,9 +276,9 @@ public class Chapter05 {
 
         int totalStudent = 0;
         int totalSum = 0;
-        for(int i=0; i<scores.length; i++){
+        for (int i = 0; i < scores.length; i++) {
             totalStudent += scores[i].length;
-            for(int k=0; k<scores[i].length; k++){
+            for (int k = 0; k < scores[i].length; k++) {
                 totalSum += scores[i][k];
             }
         }
@@ -282,10 +286,10 @@ public class Chapter05 {
         System.out.println("전체 학생의 평균 점수: " + totalAvg);
     }
 
-    public void ch17(){
+    public void ch17() {
         int[][] mathScores = new int[2][3];
-        for(int i=0; i<mathScores.length; i++){
-            for(int k=0; k<mathScores[i].length; k++){
+        for (int i = 0; i < mathScores.length; i++) {
+            for (int k = 0; k < mathScores[i].length; k++) {
                 System.out.println("mathScores[" + i + "][" + k + "]: " + mathScores[i][k]);
             }
         }
@@ -299,9 +303,9 @@ public class Chapter05 {
 
         int totalStudent = 0;
         int totalMathSum = 0;
-        for(int i=0; i<mathScores.length; i++){
+        for (int i = 0; i < mathScores.length; i++) {
             totalStudent += mathScores[i].length;
-            for(int k=0; k<mathScores[i].length; k++){
+            for (int k = 0; k < mathScores[i].length; k++) {
                 totalMathSum += mathScores[i][k];
             }
         }
@@ -312,8 +316,8 @@ public class Chapter05 {
         int[][] englishScores = new int[2][];
         englishScores[0] = new int[2];
         englishScores[1] = new int[3];
-        for(int i=0; i<englishScores.length; i++){
-            for(int k=0; k<englishScores[i].length; k++) {
+        for (int i = 0; i < englishScores.length; i++) {
+            for (int k = 0; k < englishScores[i].length; k++) {
                 System.out.println("englishScores[" + i + "][" + k + "]:" + englishScores[i][k]);
             }
         }
@@ -327,13 +331,136 @@ public class Chapter05 {
 
         totalStudent = 0;
         int totalEnglishSum = 0;
-        for(int i=0; i<englishScores.length; i++){
+        for (int i = 0; i < englishScores.length; i++) {
             totalStudent += englishScores[i].length;
-            for(int k=0; k<englishScores[i].length; k++){
+            for (int k = 0; k < englishScores[i].length; k++) {
                 totalEnglishSum += englishScores[i][k];
             }
         }
         double totalEnglishAvg = (double) totalEnglishSum / totalStudent;
         System.out.println("전체 학생의 영어 평균 점수: " + totalEnglishAvg);
+    }
+
+    public void runArray() {
+        String[] line = {"*", "**", "***", "****", "*****"};
+        for (String item : line) {
+            System.out.println(item);
+        }
+        char[][] lines = new char[5][];
+//        lines[0] = new char[1];
+//        lines[1] = new char[2];
+//        lines[2] = new char[3];
+//        lines[3] = new char[4];
+//        lines[4] = new char[5];
+
+        for (int i = 0; i < lines.length; i++) {
+            lines[i] = new char[i + 1];
+            for (int j = 0; j < lines[i].length; j++) {
+                lines[i][j] = '*';
+            }
+        }
+        for (int i = 0; i < lines.length; i++) {
+            lines[i] = new char[i + 1];
+            for (int j = 0; j < lines[i].length; j++) {
+                lines[i][j] = '*';
+            }
+            System.out.println();
+        }
+    }
+
+    public void ArrayExample() {
+        boolean[] boolArray = new boolean[10];
+        for (int i = 0; i < boolArray.length; i++) {
+            if (i % 2 == 0) {
+                boolArray[i] = true;
+                System.out.println(boolArray[i]);
+            } else {
+                boolArray[i] = false;
+                System.out.println(boolArray[i]);
+            }
+        }
+
+        int[] intArray = new int[30];
+        for (int i = 0; i < intArray.length; i++) {
+            intArray[i] = i;
+            System.out.println(i + "번 index : " + intArray[i]);
+        }
+
+        char[] charArray = new char[20];
+
+        boolean[][] boolArray2 = new boolean[3][4];
+        for(int i=0; i<boolArray2.length; i++){
+            boolArray2[0][i] = true;
+            boolArray2[1][i] = true;
+            boolArray2[2][i] = true;
+            for(int j=0; j<boolArray2[i].length; j++){
+                boolArray2[i][j] = true;
+                System.out.println(i + "열 " + j + "번 : " + boolArray2[i][j]);
+            }
+        }
+
+        String[] StrArray = new String[50];
+        for(int i=0; i<StrArray.length; i++){
+            StrArray[i] = "empty";
+            System.out.println(i + "번 index 원소 : " + StrArray[i]);
+        }
+
+        int[][] intDemention2 = {
+                {1, 0, 1, 0, 0, 1}
+                , {1, 0, 1, 1, 0, 1}
+                , {0, 1, 0, 1, 0, 0}
+                , {1, 0, 0, 1, 0, 1}
+                , {1, 0, 1, 0, 0, 1}
+        };
+        int totalZero = 0, totalOne = 0;
+        for (int i = 0; i < intDemention2.length; i++) {
+            for (int j = 0; j < intDemention2[i].length; j++) {
+                if(intDemention2[i][j] == 0){
+                    totalZero++;
+                }else {
+                    totalOne++;
+                }
+            }
+        }
+        System.out.println("총 0의 갯수는 : " + totalZero + " 총 1의 갯수는 : " + totalOne);
+
+        char[][] chInput = {
+                {'*', '*', '*', '*', ' '},
+                {'*', '*', ' ', ' ', ' '},
+                {'*', ' ', '*', '*', '*'}
+        };
+
+//        char[][] chOutput = new char[][];
+//        for(int row=0; row< chInput.length; row++){
+//
+//        }
+    }
+
+    public void addArrayExample(){
+        double[] dArray = new double[25];
+        for(int r=0; r<dArray.length; r++){
+            dArray[r] = Math.random() * 100; // 0.0 ~ 99.9999...
+            System.out.println(r + "번째 난수 : " + dArray[r]);
+        }
+        System.out.println(Arrays.toString(dArray));
+
+        int[] nArray = new int[25];
+       for(int i=0; i<nArray.length; i++){
+           nArray[i] = (int)dArray[i]; // 타입 변환 중요!!
+           System.out.println(i + "번째 정수 : " + nArray[i]);
+       }
+
+        int sum = 0;
+        for(int i=0; i<nArray.length; i++){
+            sum += nArray[i];
+        }
+        int avg = (int)sum/nArray.length;
+        System.out.println("전체 원소들의 총 합 : " + sum + ", 평균은 : " + avg);
+
+        String[] strArray = new String[25];
+
+        Scanner scanner = new Scanner(System.in);
+        String number = scanner.nextLine();
+        int[][] n2Array = new int[][];
     }
 }
