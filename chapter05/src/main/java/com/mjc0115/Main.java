@@ -51,6 +51,20 @@ public class Main {
         C05.ch16();
         System.out.println("===========ch17============");
         C05.ch17();
+        System.out.println("===========ch18============");
+        C05.ch18();
+        System.out.println("===========ch19============");
+        C05.ch19();
+        System.out.println("===========ch20============");
+        C05.ch20();
+        System.out.println("===========ch21============");
+        C05.ch21();
+        System.out.println("===========ch22============");
+        C05.ch22();
+        System.out.println("===========ch23============");
+        C05.ch23();
+        System.out.println("===========ch23============");
+        C05.ch24();
 
         C05.runArray();
 
