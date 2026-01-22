@@ -1,5 +1,6 @@
 package com.mjc0115;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -341,6 +342,131 @@ public class Chapter05 {
         System.out.println("전체 학생의 영어 평균 점수: " + totalEnglishAvg);
     }
 
+    public void ch18(){
+        String[] strArray = new String[3];
+        strArray[0] = "Java";
+        strArray[1] = "Java";
+        strArray[2] = new String("Java");
+
+        System.out.println(strArray[0] == strArray[1]);
+        System.out.println(strArray[0] == strArray[2]);
+        System.out.println(strArray[0].equals(strArray[2]));
+    }
+
+    public void ch19(){
+        int[] oldIntArray = {1,2,3};
+        int[] newIntArray = new int[5];
+        for(int i=0; i<oldIntArray.length; i++){
+            newIntArray[i] = oldIntArray[i];
+        }
+        for(int i=0; i<newIntArray.length; i++){
+            System.out.print(newIntArray[i] + ", ");
+        }
+        System.out.println("");
+    }
+
+    public void ch20(){
+        String[] oldStrArray = { "java", "array", "copy"};
+        String[] newStrArray = new String[5];
+
+        System.arraycopy(oldStrArray, 0, newStrArray, 0, oldStrArray.length);
+
+        for(int i=0; i<newStrArray.length; i++){
+            System.out.print(newStrArray[i] + ", ");
+        }
+        System.out.println("");
+    }
+
+    public void ch21() {
+        int[] scores = { 95, 71, 84, 93, 87};
+        int sum = 0;
+        for(int score : scores){
+            sum = sum + score;
+        }
+        System.out.println("점수 총합 = " + sum);
+        double avg = (double) sum / scores.length;
+        System.out.println("점수 평균 = " + avg);
+    }
+
+    public void ch22() {
+        int[] array = {1, 5, 3, 8, 2};
+        int max = array[0];
+        for(int i=0; i<array.length; i++){
+            if(max < array[i])max = array[i];
+        }
+        System.out.println(max);
+    }
+
+    public void ch23() {
+        int[][] array = {
+                {95, 86},
+                {83, 92, 96},
+                {78, 83, 93, 87, 88}
+        };
+        int sum = 0;
+        int count = 0;
+        for(int i=0; i<array.length; i++) {
+            for(int j=0; j<array[i].length; j++){
+                sum += array[i][j];
+                count++;
+            }
+        }
+        int avg = sum / count;
+        System.out.println("전체 합 : " + sum + ", 평균 : " + avg);
+    }
+
+    public void ch24() {
+        int count = 0;
+        int[] scores = new int[count];
+        int max = 0;
+        int sum = 0;
+        double avg = 0;
+
+        while(true) {
+            System.out.println("-------------------------------------------------------");
+            System.out.println("1. 학생수 | 2. 점수입력 | 3. 점수리스트 | 4. 분석 | 5. 종료");
+            System.out.println("-------------------------------------------------------");
+            System.out.print("선택> ");
+
+            Scanner sc = new Scanner(System.in);
+            int choose = sc.nextInt();
+
+            if(choose == 1) {
+                System.out.print("학생수> ");
+                count = sc.nextInt();
+            }
+
+            else if(choose == 2) {
+                for(int i=0; i<scores.length; i++){
+                    System.out.print("scores[" + i + "]: ");
+                    int score = sc.nextInt();
+                    scores[i] = score;
+                }
+            }
+
+            else if(choose == 3){
+                for(int i=0; i<scores.length; i++){
+                    System.out.println("scores[" + i + "]: " + scores[i]);
+                }
+            }
+            else if(choose == 4) {
+                for(int i=0; i<scores.length; i++){
+                    if(max < scores[i]) {
+                        max = scores[i];
+                        sum += scores[i];
+                    }
+                }
+                avg = sum/count;
+                System.out.println("최고 점수 : " + max);
+                System.out.println("평균 점수 : " + avg);
+            }
+            else if(choose == 5) {
+                System.out.println("프로그램 종료");
+                break;
+            }
+        }
+    }
+
     public void runArray() {
         String[] line = {"*", "**", "***", "****", "*****"};
         for (String item : line) {
@@ -367,6 +493,8 @@ public class Chapter05 {
             }
             System.out.println();
         }
+
+
     }
 
     public void ArrayExample() {
@@ -430,10 +558,13 @@ public class Chapter05 {
                 {'*', ' ', '*', '*', '*'}
         };
 
-//        char[][] chOutput = new char[][];
-//        for(int row=0; row< chInput.length; row++){
-//
-//        }
+        char[][] chOutput = new char[chInput[0].length][chInput.length];
+        for(int row=0; row< chInput.length; row++){
+            for(int col=0; col<chInput[row].length; col++){
+                chOutput[col][row] = chInput[row][col];
+            }
+        }
+        System.out.println(Arrays.toString(chOutput));
     }
 
     public void addArrayExample(){
@@ -470,6 +601,5 @@ public class Chapter05 {
         for(int i=0; i<chDiamond.length; i++){
             System.out.println("*");
         }
-
     }
 }
