@@ -52,6 +52,8 @@ public class Main {
         System.out.println("===========ch17============");
         C05.ch17();
 
+        C05.runArray();
+
         C05.ArrayExample();
         C05.addArrayExample();
     }

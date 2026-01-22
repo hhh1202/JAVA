@@ -353,12 +353,13 @@ public class Chapter05 {
 //        lines[3] = new char[4];
 //        lines[4] = new char[5];
 
-        for (int i = 0; i < lines.length; i++) {
-            lines[i] = new char[i + 1];
-            for (int j = 0; j < lines[i].length; j++) {
-                lines[i][j] = '*';
-            }
-        }
+//        for (int i = 0; i < lines.length; i++) {
+//            lines[i] = new char[i + 1];
+//            for (int j = 0; j < lines[i].length; j++) {
+//                lines[i][j] = '*';
+//            }
+//        }
+
         for (int i = 0; i < lines.length; i++) {
             lines[i] = new char[i + 1];
             for (int j = 0; j < lines[i].length; j++) {
@@ -369,6 +370,7 @@ public class Chapter05 {
     }
 
     public void ArrayExample() {
+        System.out.println("01/21 과제 1-1");
         boolean[] boolArray = new boolean[10];
         for (int i = 0; i < boolArray.length; i++) {
             if (i % 2 == 0) {
@@ -379,32 +381,29 @@ public class Chapter05 {
                 System.out.println(boolArray[i]);
             }
         }
-
+        System.out.println("01/21 과제 1-2");
         int[] intArray = new int[30];
         for (int i = 0; i < intArray.length; i++) {
             intArray[i] = i;
             System.out.println(i + "번 index : " + intArray[i]);
         }
-
+        System.out.println("01/21 과제 1-3");
         char[] charArray = new char[20];
 
         boolean[][] boolArray2 = new boolean[3][4];
         for(int i=0; i<boolArray2.length; i++){
-            boolArray2[0][i] = true;
-            boolArray2[1][i] = true;
-            boolArray2[2][i] = true;
             for(int j=0; j<boolArray2[i].length; j++){
                 boolArray2[i][j] = true;
                 System.out.println(i + "열 " + j + "번 : " + boolArray2[i][j]);
             }
         }
-
+        System.out.println("01/21 과제 1-4");
         String[] StrArray = new String[50];
         for(int i=0; i<StrArray.length; i++){
             StrArray[i] = "empty";
             System.out.println(i + "번 index 원소 : " + StrArray[i]);
         }
-
+        System.out.println("01/21 과제 2");
         int[][] intDemention2 = {
                 {1, 0, 1, 0, 0, 1}
                 , {1, 0, 1, 1, 0, 1}
@@ -424,6 +423,7 @@ public class Chapter05 {
         }
         System.out.println("총 0의 갯수는 : " + totalZero + " 총 1의 갯수는 : " + totalOne);
 
+        System.out.println("01/21 과제 3번");
         char[][] chInput = {
                 {'*', '*', '*', '*', ' '},
                 {'*', '*', ' ', ' ', ' '},
@@ -437,6 +437,7 @@ public class Chapter05 {
     }
 
     public void addArrayExample(){
+        System.out.println("01/21 배열 숙성 과제 1-1");
         double[] dArray = new double[25];
         for(int r=0; r<dArray.length; r++){
             dArray[r] = Math.random() * 100; // 0.0 ~ 99.9999...
@@ -444,12 +445,12 @@ public class Chapter05 {
         }
         System.out.println(Arrays.toString(dArray));
 
+        System.out.println("01/21 배열 숙성 과제 1-2");
         int[] nArray = new int[25];
        for(int i=0; i<nArray.length; i++){
            nArray[i] = (int)dArray[i]; // 타입 변환 중요!!
            System.out.println(i + "번째 정수 : " + nArray[i]);
        }
-
         int sum = 0;
         for(int i=0; i<nArray.length; i++){
             sum += nArray[i];
@@ -457,10 +458,18 @@ public class Chapter05 {
         int avg = (int)sum/nArray.length;
         System.out.println("전체 원소들의 총 합 : " + sum + ", 평균은 : " + avg);
 
+        System.out.println("01/21 배열 숙성 과제 2-1");
         String[] strArray = new String[25];
 
-        Scanner scanner = new Scanner(System.in);
-        String number = scanner.nextLine();
-        int[][] n2Array = new int[][];
+//        Scanner scanner = new Scanner(System.in);
+//        String number = scanner.nextLine();
+//        int[][] n2Array = new int[][];
+
+        System.out.println("01/21 배열 숙성 과제 2-3");
+        char[][] chDiamond = new char[5][5];
+        for(int i=0; i<chDiamond.length; i++){
+            System.out.println("*");
+        }
+
     }
 }
