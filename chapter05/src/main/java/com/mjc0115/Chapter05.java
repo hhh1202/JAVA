@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Chapter05 {
+public class chapter05 {
     public void ch01() {
         int[] arr1;
         int[] arr2;
@@ -421,6 +421,7 @@ public class Chapter05 {
         int max = 0;
         int sum = 0;
         double avg = 0;
+        Scanner sc = new Scanner(System.in); // 메모리 사용을 최소화하자
 
         while(true) {
             System.out.println("-------------------------------------------------------");
@@ -428,12 +429,12 @@ public class Chapter05 {
             System.out.println("-------------------------------------------------------");
             System.out.print("선택> ");
 
-            Scanner sc = new Scanner(System.in);
             int choose = sc.nextInt();
 
             if(choose == 1) {
                 System.out.print("학생수> ");
                 count = sc.nextInt();
+                scores = new int[count]; // 누락한 부분
             }
 
             else if(choose == 2) {
@@ -453,10 +454,10 @@ public class Chapter05 {
                 for(int i=0; i<scores.length; i++){
                     if(max < scores[i]) {
                         max = scores[i];
-                        sum += scores[i];
                     }
+                    sum += scores[i];
                 }
-                avg = sum/count;
+                avg = (double)sum/count;
                 System.out.println("최고 점수 : " + max);
                 System.out.println("평균 점수 : " + avg);
             }

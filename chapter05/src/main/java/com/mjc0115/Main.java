@@ -16,7 +16,8 @@ public class Main {
 //            out.println("i = " + i);
 //        }
 
-        Chapter05 C05 = new Chapter05();
+
+        chapter05 C05 = new chapter05();
         System.out.println("===========ch01============");
         C05.ch01();
         System.out.println("===========ch02============");
@@ -63,12 +64,22 @@ public class Main {
         C05.ch22();
         System.out.println("===========ch23============");
         C05.ch23();
-        System.out.println("===========ch23============");
+        System.out.println("===========ch24============");
         C05.ch24();
 
         C05.runArray();
 
         C05.ArrayExample();
         C05.addArrayExample();
+
+        PracticeArray pa = new PracticeArray();
+        pa.ex01();
+        pa.ex02();
+        pa.ex03();
+        pa.ex04();
+        pa.ex05();
+        pa.ex06();
+
+
     }
 }

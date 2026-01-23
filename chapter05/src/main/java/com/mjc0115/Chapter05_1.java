@@ -1,5 +1,6 @@
 package com.mjc0115;
 import java.util.Calendar;
+import java.util.Scanner;;
 
 public class Chapter05_1 {
     public static void main(String[] args) {
@@ -15,5 +16,6 @@ public class Chapter05_1 {
 
         int result = num1 + num2;
         System.out.println(num1 + " + " + num2 + " = " + result);
-    }
+
+        }
 }
