@@ -47,9 +47,41 @@ public class PracticeArray {
         System.out.print("문자열을 입력하세요 : ");
         String str = sc.nextLine();
 
-        System.out.println("검색할 문자를 입력하세요 : ");
+        System.out.print("검색할 문자를 입력하세요 : ");
         char ch = sc.nextLine().charAt(0);
 
-//        String[] arr = new String;
+        char[] arr = new char[str.length()];
+        for(int i=0; i<arr.length; i++){
+            arr[i] = str.charAt(i);
+        }
+
+        int count = 0;
+        System.out.print(str + "에 " + ch + "가 존재하는 위치(인덱스) : ");
+        for(int i=0; i<arr.length; i++){
+            if(arr[i] == ch){
+                System.out.print(i + " ");
+                count++;
+            }
+        }
+        System.out.println("\ni의 개수 : " + count);
     }
+//“월“ ~ “일”까지 초기화된 문자열 배열을 만들고 0부터 6까지 숫자를 입력 받아 입력한 숫자와 같은 인덱스에 있는 요일을 출력하고 범위에 없는 숫자를 입력 시 “잘못 입력하셨습니다“를 출력하세요.
+    public void ex06() {
+        char[] week = {'월', '화', '수', '목', '금', '토', '일'};
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("0~6 사이 숫자 입력 : " );
+        int num = sc.nextInt();
+
+        if(num >= 0 && num < 7) {
+            System.out.println(week[num]);
+        }else {
+            System.out.println("잘못 입력하셨습니다.");
+        }
+        sc.close();
+        }
+//    사용자가 배열의 길이를 직접 입력하여 그 값만큼 정수형 배열을 선언 및 할당하고 배열의 크기만큼 사용자가 직접 값을 입력하여 각각의 인덱스에 값을 초기화 하세요. 그리고 배열 전체 값을 나열하고 각 인덱스에 저장된 값들의 합을 출력하세요
+        public void ex07() {
+
+        }
 }
