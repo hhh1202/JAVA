@@ -1,12 +1,12 @@
 package com.mjc0115;
 
-import lombok.*;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+//import lombok.*;
+//
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@ToString
 
 public class Calculator3 {
     static double pi = 3.141592;

@@ -188,5 +188,42 @@ public class Main {
         }else {
             System.out.println("다른 Singleton 객체입니다.");
         }
+        System.out.println();
+
+        System.out.println("===================6장 확인문제 13,14,15===================");
+        Member user1 = new Member("홍길동", "hong");
+        System.out.println("이름 : " + user1.name + " id : " + user1.id);
+        MemberService memberService = new MemberService();
+        boolean result = memberService.login("hong", "12345");
+        if(result) {
+            System.out.println("로그인 되었습니다.");
+            MemberService.logout("hong");
+        }else {
+            System.out.println("id 또는 password가 올바르지 않습니다.");
+        }
+        System.out.println();
+
+        System.out.println("===================6장 확인문제 16, 17=======================");
+        // 객체 생성 후 메소드 오버로딩
+//        Printer printer = new Printer();
+//        printer.println(10);
+//        printer.println(true);
+//        printer.println(5.7);
+//        printer.println("홍길동");
+        // 객체 없이 메소드 호출
+        Printer.println(10);
+        Printer.println(true);
+        Printer.println(5.7);
+        Printer.println("홍길동");
+        System.out.println();
+
+        System.out.println("=====================6장 확인문제 18======================");
+        ShopService obj3 = ShopService.getInstance();
+        ShopService obj4 = ShopService.getInstance();
+        if(obj3 == obj4){
+            System.out.println("같은 Singleton 객체입니다.");
+        }else {
+            System.out.println("다른 Singleton 객체입니다.");
+        }
     }
 }
