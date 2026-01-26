@@ -30,10 +30,10 @@ public class Main {
         System.out.println("k1.ssn : " + k1.ssn);
         System.out.println();
 
-        Korean k2 = new Korean("김효린", "060912-1234567");
-        System.out.println("k2.nation : " + k2.nation);
-        System.out.println("k2.name : " + k2.name);
-        System.out.println("k2.ssn : " + k2.ssn);
+        Korean k1_2 = new Korean("김효린", "060912-1234567");
+        System.out.println("k2.nation : " + k1_2.nation);
+        System.out.println("k2.name : " + k1_2.name);
+        System.out.println("k2.ssn : " + k1_2.ssn);
         System.out.println();
 
         System.out.println("===============Car3.java 생성자 오버로딩================");
@@ -127,7 +127,66 @@ public class Main {
         System.out.println("폰 이름 : " + p.name);
         System.out.println("폰 기종 : " + p.model);
         System.out.println();
+
+        System.out.println("================Car6.java 인스턴스 멤버===============");
+        Car6 myCar6 = new Car6("Porsche");
+        Car6 yourCar6 = new Car6("BMW");
+        myCar6.run();
+        yourCar6.run();
+        System.out.println();
+
+        System.out.println("======================Calculator3.java 정적 멤버======================");
+        double result9 = 10 * 10 * Calculator3.pi;
+        int result10 = Calculator3.plus(10, 5 );
+        int result11 = Calculator3.minus(10, 5 );
+        System.out.println("result9 : " + result9);
+        System.out.println("result10 : " + result10);
+        System.out.println("result11 : " + result11);
+        System.out.println();
+
+        System.out.println("====================Television.java 정적 블록=====================");
+        System.out.println(Television.info);
+        System.out.println();
+
+        System.out.println("====================인스턴스 맴버 사용 불가================");
+        System.out.println();
+
+        System.out.println("=================Korean.java final 필드와 상수==================");
+        Korean2 k2 = new Korean2("123456-1234567", "한자바");
+
+        System.out.println(k2.nation);
+        System.out.println(k2.ssn);
+        System.out.println(k2.name);
+        k1.name = "김자바";
+        System.out.println();
+
+        System.out.println("==================Earth.java 상수 선언===================");
+        System.out.println("지구의 반지름 : " + Earth.EARTH_RADIUS + "km");
+        System.out.println("지구의 표면적 : " + Earth.EARTH_SURFACE_AREA + "km^2");
+        System.out.println();
+
+        System.out.println("========================Car8.java Getter, Setter=======================");
+        Car8 myCar8 = new Car8();
+        myCar8.setSpeed(-50);
+        System.out.println("현재 속도 : " + myCar8.getSpeed());
+        myCar8.setSpeed(60);
+        System.out.println("현재 속도 : " + myCar8.getSpeed());
+        if(!myCar8.isStop()) {
+            myCar8.setStop(true);
+        }
+        System.out.println("현재 속도 : " + myCar8.getSpeed());
+        System.out.println();
+
+        System.out.println("=================Singleton.java 싱글톤 패턴======================");
+//        Singleton obj1 = new Singleton();
+//        Singleton obj1 = new Singleton();
+        Singleton obj1 = Singleton.getInstance();
+        Singleton obj2 = Singleton.getInstance();
+
+        if(obj1 == obj2) {
+            System.out.println("같은 Singleton 객체입니다.");
+        }else {
+            System.out.println("다른 Singleton 객체입니다.");
+        }
     }
-
-
 }
