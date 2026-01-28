@@ -79,6 +79,82 @@ public class Main {
 
         parent.method1();
         parent.method2();
+        System.out.println();
+
+        System.out.println("======Tire/HankookTire/KumhoTire/Car2.java 필드다형성==========");
+        Car2 myCar2 = new Car2();
+
+        myCar2.tire = new Tire();
+        myCar2.run();
+
+        myCar2.tire = new HankookTire();
+        myCar2.run();
+
+        myCar2.tire = new KumhoTire();
+        myCar2.run();
+        System.out.println();
+
+        System.out.println("=========Vehicle/Bus/Taxi/Driver.java 매개변수 다형성===============");
+        Driver driver = new Driver();
+        Bus bus = new Bus();
+        driver.drive(bus);
+
+        Taxi taxi = new Taxi();
+        driver.drive(taxi);
+        System.out.println();
+
+        System.out.println("===============Person.java 객체 타입 확인==================");
+        Person p1 = new Person("한환희");
+        personInfo(p1);
+
+        System.out.println();
+
+        Person p2 = new Student("정태환", 10);
+        personInfo(p2);
+        System.out.println();
+
+        System.out.println("============Phone3/SmartPhone3.java 추상 클래스=================");
+        SmartPhone3 smartPhone3 = new SmartPhone3("홍길동");
+        smartPhone3.turnOn();;
+        smartPhone3.internetSearch();
+        smartPhone3.turnOff();
+        System.out.println();
+
+        System.out.println("=========Animal/Dog/Cat.java 추상메소드 재정의=============");
+        Dog dog = new Dog();
+        dog.sound();
+
+        Cat cat = new Cat();
+        cat.sound();
+
+        animalSound(new Dog());
+        animalSound(new Dog());
+        System.out.println();
+
+        System.out.println("======Person2/Employee/Manager/Director.java 봉인된 클래스========");
+        Person2 p = new Person2();
+        Employee e = new Employee();
+        Manager m = new Manager();
+        Director d = new Director();
+
+        p.work();
+        e.work();
+        m.work();
+        d.work();
 
     }
+    public static void animalSound(Animal animal){
+        animal.sound();
+    }
+
+    public static void personInfo(Person person){
+        System.out.println("name : " + person.name);
+        person.walk();
+
+        if(person instanceof Student student) {
+            System.out.println("StudentNo : " + student.studentNo);
+            student.study();
+        }
+    }
+
 }
