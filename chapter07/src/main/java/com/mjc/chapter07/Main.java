@@ -76,7 +76,6 @@ public class Main {
         System.out.println("===========Parent/Child.java 자동타입변환================");
         Child child = new Child();
         Parent parent =new Parent();
-
         parent.method1();
         parent.method2();
         System.out.println();

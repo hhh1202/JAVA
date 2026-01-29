@@ -7,6 +7,14 @@ public class Student extends Person {
         this.studentNo = studentNo;
     }
 
+    public void setStudentNo(int studentNo) {
+        this.studentNo = studentNo;
+    }
+
+    public int getStudentNo() {
+        return studentNo;
+    }
+
     public void study() {
         System.out.println("공부를 합시다.");
     }

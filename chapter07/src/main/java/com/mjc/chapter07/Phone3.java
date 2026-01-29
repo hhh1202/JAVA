@@ -7,10 +7,10 @@ public abstract class Phone3 {
         this.owner = owner;
     }
 
-    void turnOn(){
+    void turnOn() {
         System.out.println("폰 전원을 킵니다.");
     }
-    void turnOff(){
-        System.out.println("폰 전원을 끕니다.");
-    }
+    void turnOff() {
+            System.out.println("폰 전원을 끕니다.");
+        }
 }
