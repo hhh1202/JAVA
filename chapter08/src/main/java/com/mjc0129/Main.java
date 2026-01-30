@@ -155,7 +155,7 @@ public class Main {
 
         System.out.println("====InterfaceA_a/InterfaceB_b/InterfaceC_c/ImplClass.java8장 봉인된 인터페이스====");
         ImplClass impl2 = new ImplClass();
-        
+
         InterfaceA_a ia_a = impl2;
         ia_a.methodA_a();
         System.out.println();
@@ -169,7 +169,45 @@ public class Main {
         ic_c.methodA_a();
         ic_c.methodB_b();
         ic_c.methodC_c();
+        System.out.println();
 
+        System.out.println("======Remocon/TV.java 8장 확인문제 5번=======");
+        Remocon r = new TV();
+        r.powerOn();
+        System.out.println();
+
+        System.out.println("=======Soundable/Cat/Dog.java 8장 확인문제 6번=======");
+        printSound(new Cat());
+        printSound(new Dog());
+        System.out.println();
+
+        System.out.println("=====DataAccessObject/OracleDao/MySqlDao.java 8장 확인문제 7번=====");
+        dbWork(new OracleDao());
+        dbWork(new MySqlDao());
+        System.out.println();
+
+        System.out.println("========AA/BB/CC.java 8장 확인문제 8번=========");
+        action(new BB());
+        action(new CC());
+
+    }
+
+    public static void printSound(Soundable soundable){
+        System.out.println(soundable.sound());
+    }
+
+    public static void dbWork(DataAccessObject dao){
+        dao.select();
+        dao.insert();
+        dao.update();
+        dao.delete();
+    }
+
+    public static void action(AA aa){
+        aa.method1();
+        if(aa instanceof CC c){
+            c.method2();
+        }
     }
 
     public static void ride(Vehicle vehicle) {
