@@ -1,6 +1,4 @@
-package com.mjc.assignment;
-
-import com.mjc0129.A;
+package com.mjc.assignment01;
 
 import java.time.LocalDate;
 

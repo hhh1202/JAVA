@@ -1,4 +1,4 @@
-package com.mjc.assignment;
+package com.mjc.assignment01;
 
 // enum의 기능 - 허용된 동물만 생성, 잘못된 값 차단
 public enum AnimalType {
