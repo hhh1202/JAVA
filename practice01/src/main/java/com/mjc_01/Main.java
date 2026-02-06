@@ -119,11 +119,8 @@ public class Main {
             } catch (IllegalArgumentException e) {
                 System.out.println("[오류] " + e.getMessage());
             }
-
-            sc.close();
         }
-
-
+        System.out.println();
     }
 
 
