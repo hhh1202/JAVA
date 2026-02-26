@@ -1,7 +1,5 @@
 package com.mjc_0224;
 
-import com.mjc_0206.Member;
-
 import java.util.*;
 
 public class HashSetExample {
@@ -38,5 +36,6 @@ public class HashSetExample {
         set2.add(new Member("홍길동", 30));
         set2.add(new Member("홍길동", 30));
 
-        System.out.println("총 객체 수: " + set.size());    }
+        System.out.println("총 객체 수: " + set.size());
+    }
 }
