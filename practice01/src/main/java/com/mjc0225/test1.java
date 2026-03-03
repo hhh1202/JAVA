@@ -36,5 +36,24 @@ public class test1 {
         }
         System.out.println(count);
 
+        int[] arr3 = {3, 8, 15, 6, 2, 11};
+        int max2 = 0;
+
+        for(int i=0; i<arr.length; i++) {
+            if(arr3[i]%2 == 0 && arr3[i] > max2){
+                max2 = arr3[i];
+            }
+        }
+        System.out.println(max2);
+
+        int[] arr4 = {15,13,4,2,5,6,735,23};
+        int min2 = Integer.MAX_VALUE;
+
+        for(int i=0; i<arr4.length; i++){
+            if(arr4[i]%2==1 && arr4[i] < min2) {
+                min2 = arr4[i];
+            }
+        }
+        System.out.println(min2);
     }
 }
