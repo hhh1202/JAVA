@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class EchoServer {
-    private static ExecutorService serverSocket = null;
+    private static ServerSocket serverSocket = null;
     private static ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     public static void main(String[] args){
