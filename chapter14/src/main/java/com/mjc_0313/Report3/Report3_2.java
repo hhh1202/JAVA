@@ -1,6 +1,6 @@
-package com.mjc_0313;
+package com.mjc_0313.Report3;
 
-public class Test2_2 implements Runnable{
+public class Report3_2 implements Runnable{
     @Override
     public void run() {
         for (int i = 4; i < 7; i++) {
