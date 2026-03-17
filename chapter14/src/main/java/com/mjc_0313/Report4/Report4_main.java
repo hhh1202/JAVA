@@ -4,19 +4,16 @@ import java.util.Scanner;
 
 public class Report4_main {
     public static void main(String[] args) {
-        Report4_1 report4_1 = new Report4_1();
         Scanner scanner = new Scanner(System.in);
-        String a = scanner.nextLine();
-        System.out.println(a);
+        Thread th = null;
 
         while (true) {
-            System.out.println(a);
-            try {
-                Thread.sleep(300);
-            } catch (Exception e) {
+            String input = scanner.nextLine();
+            if(th != null){
+                th.interrupt();
             }
-            String b = scanner.nextLine();
-            report4_1.start();
+            th = new Thread(new Report4_1(input));
+            th.start();
         }
     }
 }
