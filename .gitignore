@@ -30,6 +30,9 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-## MySQL 데이터 폴더 제외
-db_data/
-db_data/**
+## 각 DB별 데이터 폴더 제외
+mysql_data/
+mariadb_data/
+postgres_data/
+## 이름이 _data로 끝나는 모든 폴더 제외
+*_data/

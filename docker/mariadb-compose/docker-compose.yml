@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  mariadb-cwc:
+    image: mariadb:latest  # MySQL 대신 MariaDB 이미지 사용
+    container_name: mariadb-cwc
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: q1w2e3r4  # 변수명에 MARIADB_를 붙여주는 것이 정석입니다
+      MARIADB_DATABASE: my_database    # (선택) 초기 데이터베이스 이름
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mariadb_data:/var/lib/mysql  # 폴더 이름도 구분하기 쉽게 변경
