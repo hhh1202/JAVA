@@ -29,3 +29,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+## MySQL 데이터 폴더 제외
+db_data/
+db_data/**

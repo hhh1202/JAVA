@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  mysql-cwc:
+    image: mysql:latest
+    container_name: mysql-cwc
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: q1w2e3r4
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db_data:/var/lib/mysql
