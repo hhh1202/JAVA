@@ -1,0 +1,17 @@
+services:
+  postgres-hhh:
+    image: postgres:latest
+    container_name: postgres-hhh
+    user: "postgres"
+    restart: always
+    environment:
+      # PostgreSQL의 슈퍼유저 비밀번호 설정 변수입니다.
+      POSTGRES_PASSWORD: q1w2e3r4
+      # 기본적으로 생성될 데이터베이스 이름을 지정할 수 있습니다 (선택사항).
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    # PostgreSQL은 기본적으로 UTF-8을 사용하지만, 
+    # 초기화 시 인코딩을 명시하려면 아래 인수를 사용합니다.
+    volumes:
+      - ./postgres_data:/var/lib/postgresql
