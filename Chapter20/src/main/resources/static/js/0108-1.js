@@ -130,11 +130,42 @@ class NintendoGame {
       , imgUrl: $("#imgUrl").val()
     };
     // gameList 배열에 JS객체 를 추가한다. this.#gameList.push(JS객체);
-    this.#gameList.push(newGame);
-    this.clearInputBox();
+//    this.#gameList.push(newGame);
+    this.insertData(newGame);
+//    this.clearInputBox();
     // gameList 배열정보를 게임목록 화면에 출력한다. this.printList();
     this.printList();
   }
+
+  insertData(insertData) {
+  // 화면에서는 json 데이터를 서버 url 과 method post로 전송하는 jquery ajax를 구현해야 한다.
+  // 웹서버에서는 서버 url 과 method post 와 json 데이터를 받아들이는 컨트롤러를 구현해야 한다.
+  // 웹서버 컨트롤러는 DataBase Service에 insert 하는 동작을 실행해야 한다.
+  // Data Service 는 insert하는 mybatis insert 메소드를 실행
+  // mybatis isert 메소드는
+  $.ajax({
+  	    url: "/api/insert-data" // 요청 URL
+  	    , type: "POST"          // 전송 방식 (GET, POST 등)
+  	    , dataType: "json"      // 응답 데이터 타입
+  	    , data: JSON.stringify(insertData)
+  	    , contentType: "application/json"
+  	})
+  	.done(function(data, textStatus, jqXHR) {
+  	    // 요청 성공 시 실행
+  	    console.log("성공:", data);
+  //	    $("#result").text(data.message);
+          this.clearInputBox();
+  	})
+  	.fail(function(jqXHR, textStatus, errorThrown) {
+  	    // 요청 실패 시 실행
+  	    console.error("실패:", textStatus);
+  	})
+  	.always(function() {
+  	    // 성공/실패 관계없이 항상 실행
+  //	    console.log("요청 완료");
+  	});
+  }
+
 
   updateGame() {
     // 사용자 입력 데이터가 유효한지 검증해야 한다. 유효하지 않으면 경고창 띄우고 리턴;
