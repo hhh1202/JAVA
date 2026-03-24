@@ -1,0 +1,16 @@
+services:
+  mariadb-hhh:
+    image: mariadb:latest
+    container_name: mariadb-hhh
+    restart: always
+    environment:
+      # MariaDB도 동일하게 ROOT 비밀번호를 설정합니다.
+      MARIADB_ROOT_PASSWORD: 1q2w3e4r
+    ports:
+      - "3306:3306"
+    # MariaDB의 캐릭터셋 설정 방식입니다.
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
