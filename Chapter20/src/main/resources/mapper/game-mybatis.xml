@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace는 자바 인터페이스(DAO/Repository)의 전체 경로와 일치해야 함 -->
+<mapper namespace="mjc0320.chapter20.gamecrud.IGameMybatis">
+    <insert id="insertData" parameterType="GameDto">
+        INSERT INTO game_tbl (
+            name
+            , genre
+            , grade
+            , price
+            , img_url)
+        VALUES (
+            #{name}
+            , #{genre}
+            , #{grade}
+            , #{price}
+            , #{img_url}
+        )
+    </insert>
+</mapper>
