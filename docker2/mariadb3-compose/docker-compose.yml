@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mariadb-hhh:
+    image: mariadb:latest
+    container_name: mariadb-hhh
+    restart: always
+    environment:
+      # 루트 관리자 비밀번호
+      MARIADB_ROOT_PASSWORD: q1w2e3r4
+      # 이미지의 DB 이름: petshop_db
+      MARIADB_DATABASE: petshop_db
+      # 이미지의 사용자명: petshop_owner
+      MARIADB_USER: petshop_owner
+      # 이미지의 사용자 비밀번호 (원하시는 비밀번호를 입력하세요)
+      MARIADB_PASSWORD: q1w2e3r4 
+    ports:
+      - "3306:3306"
+    # 캐릭터셋 설정
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./mariadb_data:/var/lib/mysql

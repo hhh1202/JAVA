@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: personal01
+  datasource:
+driver-class-name: com.mariadb.cj.jdbc.Driver
+  url: jdbc:mariadb://localhost:3306/beginner?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+  username: beginner_user
+  password: beginer1234@
+
+server:
+  port: 8085
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: mjc0324.personal01
+  configuration:
+    map-underscore-to-camel-case: true

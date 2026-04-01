@@ -1,4 +1,4 @@
-package mjc0324.personal01;
+package mjc0324.personal01.gamecrud;
 
 import lombok.*;
 
