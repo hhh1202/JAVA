@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: cookies
+  datasource:
+# MariaDB ?? ????? ??
+    driver-class-name: org.mariadb.jdbc.Driver
+# jdbc:mysql ?? jdbc:mariadb ??
+    url: jdbc:mariadb://localhost:3306/cookies?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: cookies_user
+    password: cookies9876!
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+# MariaDB ?? Dialect? ?? (Hibernate ??? ?? ?? ????? ???? ?? ???)
+      dialect: org.hibernate.dialect.MariaDB103Dialect
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+
+server:
+  port: 8089
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+cookie:
+  save-folder: ./cookie_upload
