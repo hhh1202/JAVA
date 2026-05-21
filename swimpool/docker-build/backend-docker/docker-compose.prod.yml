@@ -32,7 +32,7 @@ services:
     image: "backend-server:0.0.3"
     restart: "always"
     ports:
-      - "${port}:${port}"
+      - "${PORT}:${PORT}"
     env_file:
       - .env.prod
     environment:
