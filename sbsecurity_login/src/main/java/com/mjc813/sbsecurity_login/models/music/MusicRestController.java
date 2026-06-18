@@ -1,9 +1,12 @@
 package com.mjc813.sbsecurity_login.models.music;
 
 import com.mjc813.sbsecurity_login.common.ComResponseDto;
+import com.mjc813.sbsecurity_login.common.LoginException;
+import com.mjc813.sbsecurity_login.common.Mjc813Exception;
 import com.mjc813.sbsecurity_login.common.ResponseCode;
 import com.mjc813.sbsecurity_login.models.member.IMember;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,59 +20,50 @@ public class MusicRestController {
 	private MusicService musicService;
 
 	@PostMapping("")
-	public ResponseEntity<ComResponseDto<MusicDto>> insert(Model model, @RequestBody MusicDto insertDto) {
-		IMember signedMember = (IMember)model.getAttribute("signedMember");
-		// Model 클래스에 "signedMember" 키에 해당하는 MemberDto 가 존재하는지 찾는다.
-		if ( !this.IsUserOrAdmin(model) ) {
+	public ResponseEntity<ComResponseDto<MusicDto>> insert(Model model, @RequestBody MusicDto insertDto) throws LoginException {
+		// 이 곳 Controller 에서 isUserOrAdmin 을 사용하는 것보다 Service 안에서 사용하는게 좋다. update, delete 참고하세요
+		IMember signedMember = this.isUserOrAdmin(model);
+		if ( signedMember == null ) {
 			// 존재하지 않으면 인가 에러를 출력한다.
 			return ResponseEntity.status(500).body(
 				ComResponseDto.make(ResponseCode.AUTHORIZATION_ERROR, null)
 			);
 		}
-		insertDto.setCreateId(signedMember.getSignId());
-		MusicDto result = this.musicService.insert(insertDto);
+		MusicDto result = this.musicService.insert(signedMember, insertDto);
 		return ResponseEntity.status(201).body(
 			ComResponseDto.make(ResponseCode.SUCCESS, result)
 		);
 	}
 
-	// role 이 USER 인지 체크
-	private Boolean IsUser(Model model) {
+	// role 이 USER 또는 ADMIN 인지 체크해서 아니면 null 을 리턴
+	private IMember isUserOrAdmin(Model model) {
 		IMember signedMember = (IMember)model.getAttribute("signedMember");
-		if ( signedMember == null) {
-			return false;
+		if ( signedMember != null && signedMember.getRole().equals("GUEST") ) {
+			return null;
 		}
-		if ( !signedMember.getRole().equals("USER") ) {
-			return false;
-		}
-		return true;
+		return signedMember;
 	}
 
-	private Boolean IsUserOrAdmin(Model model) {
-		IMember signedMember = (IMember)model.getAttribute("signedMember");
-		if ( signedMember == null) {
-			return false;
-		}
-		if ( signedMember.getRole().equals("GUEST") ) {
-			return false;
-		}
-		return true;
-
+	@PatchMapping("")
+	public ResponseEntity<ComResponseDto<MusicDto>> update(Model model
+			, @RequestBody MusicDto updateDto) throws Mjc813Exception {
+		MusicDto result = this.musicService.update(model, updateDto);
+		return ResponseEntity.status(HttpStatus.OK).body(
+				ComResponseDto.make(ResponseCode.SUCCESS, result)
+		);
 	}
 
-	private Boolean IsAdmin(Model model) {
-		IMember signedMember = (IMember)model.getAttribute("signedMember");
-		if ( signedMember == null) {
-			return false;
-		}
-		if ( !signedMember.getRole().equals("ADMIN") ) {
-			return false;
-		}
-		return true;
+	@DeleteMapping("/{id}")
+	public ResponseEntity<ComResponseDto<MusicDto>> deleteById(Model model
+			, @PathVariable Long id) throws Mjc813Exception {
+		MusicDto result = this.musicService.deleteById(model, id);
+		return ResponseEntity.status(200).body(
+				ComResponseDto.make(ResponseCode.SUCCESS, result)
+		);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ComResponseDto<MusicDto>> findById(@PathVariable Long id) {
+	public ResponseEntity<ComResponseDto<MusicDto>> findById(@PathVariable Long id) throws Mjc813Exception {
 		MusicDto result = this.musicService.findById(id);
 		return ResponseEntity.status(200).body(
 				ComResponseDto.make(ResponseCode.SUCCESS, result)
@@ -77,29 +71,10 @@ public class MusicRestController {
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<ComResponseDto<List<MusicDto>>> findAll(
-//			HttpServletRequest request
-			@CookieValue(name="MJC_LOGIN", required = true) String signId
-	) {
-//		Cookie[] cookies = request.getCookies();
-		try {
-//			Optional<Cookie> cookie = Arrays.stream(cookies).filter(x -> x.getName().equals("MJC_LOGIN")).findFirst();
-			if (signId != null) {
-				// 쿠키 MJC_LOGIN 키에 값이 있다
-				List<MusicDto> result = this.musicService.findAll();
-				return ResponseEntity.status(200).body(
-						ComResponseDto.make(ResponseCode.SUCCESS, result)
-				);
-			} else {
-				// 쿠키 MJC_LOGIN 키에 값이 없다
-				return ResponseEntity.status(500).body(
-						ComResponseDto.make(ResponseCode.AUTHORIZATION_ERROR, null)
-				);
-			}
-		} catch (Exception e) {
-			return ResponseEntity.status(500).body(
-					ComResponseDto.make(ResponseCode.AUTHORIZATION_ERROR, null)
-			);
-		}
+	public ResponseEntity<ComResponseDto<List<MusicDto>>> findAll(Model model) throws Mjc813Exception {
+		List<MusicDto> result = this.musicService.findAll(model);
+		return ResponseEntity.status(200).body(
+				ComResponseDto.make(ResponseCode.SUCCESS, result)
+		);
 	}
 }
