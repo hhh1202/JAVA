@@ -1,6 +1,6 @@
 package com.mjc813.jwtsecurity_login.conf;
 
-import com.mjc813.sbsecurity_login.models.member.MemberService;
+import com.mjc813.jwtsecurity_login.models.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.security.autoconfigure.web.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;

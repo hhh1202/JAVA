@@ -1,13 +1,13 @@
 package com.mjc813.jwtsecurity_login.biz;
 
-import com.mjc813.sbsecurity_login.common.ComResponseDto;
-import com.mjc813.sbsecurity_login.common.LoginException;
-import com.mjc813.sbsecurity_login.common.ResponseCode;
-import com.mjc813.sbsecurity_login.models.auth.SignInDto;
-import com.mjc813.sbsecurity_login.models.auth.SignUpDto;
-import com.mjc813.sbsecurity_login.models.member.IMember;
-import com.mjc813.sbsecurity_login.models.member.MemberDto;
-import com.mjc813.sbsecurity_login.models.member.MemberService;
+import com.mjc813.jwtsecurity_login.common.ComResponseDto;
+import com.mjc813.jwtsecurity_login.common.LoginException;
+import com.mjc813.jwtsecurity_login.common.ResponseCode;
+import com.mjc813.jwtsecurity_login.models.auth.SignInDto;
+import com.mjc813.jwtsecurity_login.models.auth.SignUpDto;
+import com.mjc813.jwtsecurity_login.models.member.IMember;
+import com.mjc813.jwtsecurity_login.models.member.MemberDto;
+import com.mjc813.jwtsecurity_login.models.member.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

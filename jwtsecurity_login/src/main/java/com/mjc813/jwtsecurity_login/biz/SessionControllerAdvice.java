@@ -1,7 +1,7 @@
 package com.mjc813.jwtsecurity_login.biz;
 
-import com.mjc813.sbsecurity_login.models.member.MemberDto;
-import com.mjc813.sbsecurity_login.models.member.MemberService;
+import com.mjc813.jwtsecurity_login.models.member.MemberDto;
+import com.mjc813.jwtsecurity_login.models.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;

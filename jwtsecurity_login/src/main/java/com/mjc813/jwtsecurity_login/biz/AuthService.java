@@ -1,10 +1,10 @@
 package com.mjc813.jwtsecurity_login.biz;
 
-import com.mjc813.sbsecurity_login.common.LoginException;
-import com.mjc813.sbsecurity_login.models.auth.SignInDto;
-import com.mjc813.sbsecurity_login.models.member.MemberEntity;
-import com.mjc813.sbsecurity_login.models.member.MemberJpaRepository;
-import com.mjc813.sbsecurity_login.models.role.Role;
+import com.mjc813.jwtsecurity_login.common.LoginException;
+import com.mjc813.jwtsecurity_login.models.auth.SignInDto;
+import com.mjc813.jwtsecurity_login.models.member.MemberEntity;
+import com.mjc813.jwtsecurity_login.models.member.MemberJpaRepository;
+import com.mjc813.jwtsecurity_login.models.role.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
