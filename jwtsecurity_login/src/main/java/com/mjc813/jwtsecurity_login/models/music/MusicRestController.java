@@ -1,15 +1,13 @@
-package com.mjc813.sbsecurity_login.models.music;
+package com.mjc813.jwtsecurity_login.models.music;
 
 import com.mjc813.sbsecurity_login.common.ComResponseDto;
 import com.mjc813.sbsecurity_login.common.LoginException;
 import com.mjc813.sbsecurity_login.common.Mjc813Exception;
 import com.mjc813.sbsecurity_login.common.ResponseCode;
-import com.mjc813.sbsecurity_login.models.member.IMember;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.mjc813.sbsecurity_login.models.music;
+package com.mjc813.jwtsecurity_login.models.music;
 
 import com.mjc813.sbsecurity_login.common.LoginException;
 import com.mjc813.sbsecurity_login.common.Mjc813Exception;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.time.LocalDateTime;
 import java.util.List;
