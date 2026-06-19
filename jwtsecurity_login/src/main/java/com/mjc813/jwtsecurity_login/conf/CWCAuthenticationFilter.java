@@ -17,23 +17,22 @@ import java.io.IOException;
 
 @Component
 public class CWCAuthenticationFilter extends OncePerRequestFilter {
-    @Autowired
-    private MemberService memberService;
+	@Autowired
+	private MemberService memberService;
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request
-    , HttpServletResponse response
-    , FilterChain filterChain) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Object signObj = session.getAttribute("MJC_LOGIN");
-        if( signObj instanceof String signId) {
-            MemberDto find = this.memberService.findBySignId(signId);
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                    find, null, find.getAuthorities()
-            );
-            SecurityContextHolder.getContext().setAuthentication(auth);
-        }
-        filterChain.doFilter(request, response);
-    }
-
+	@Override
+	protected void doFilterInternal(HttpServletRequest request
+			, HttpServletResponse response
+			, FilterChain filterChain) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Object signObj = session.getAttribute("MJC_LOGIN");
+		if (signObj instanceof String signId) {
+			MemberDto find = this.memberService.findBySignId(signId);
+			UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+					find, null, find.getAuthorities()
+			);
+			SecurityContextHolder.getContext().setAuthentication(auth);
+		}
+		filterChain.doFilter(request, response);
+	}
 }

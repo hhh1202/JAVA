@@ -28,29 +28,28 @@ import java.util.List;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class CWCWebSecurityConfig {
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private MemberService memberService;
 
-    @Autowired
-    private MemberService memberService;
+	@Bean
+	public DaoAuthenticationProvider daoAuthenticationProvider() {
+		DaoAuthenticationProvider daoAuthenticationProvider
+				= new DaoAuthenticationProvider(memberService);
+		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
+		return daoAuthenticationProvider;
+	}
 
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider daoAuthenticationProvider
-                = new DaoAuthenticationProvider(memberService);
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
-        return daoAuthenticationProvider;
-    }
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) {
+		return authConfig.getAuthenticationManager();
+	}
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) {
-        return authConfig.getAuthenticationManager();
-    }
-
-    @Bean
-    public CWCAuthenticationFilter cwcAuthenticationFilter() {
-        return new CWCAuthenticationFilter();
-    }
+	@Bean
+	public CWCAuthenticationFilter cwcAuthenticationFilter() {
+		return new CWCAuthenticationFilter();
+	}
 
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
