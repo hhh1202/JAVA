@@ -23,5 +23,13 @@ spring:
       force: true
 server:
   port: 8083
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 
-kind: Application
+myapp:
+  jwt:
+    secret: thisismyjwtsecretofthisisjavaofgit
+    expireAccessToken: 1800000 #30 * 60 * 1000
