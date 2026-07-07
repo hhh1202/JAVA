@@ -37,8 +37,8 @@ These additional references should also help you:
 ### DB 설계
 ```sql
 CREATE DATABASE auth_spring_db DEFAULT CHARACTER SET utf8mb4;
-CREATE USER 'auth_spring_user'@'%' IDENTIFIED BY 'qwer1234!';
-GRANT ALL PRIVILEGES ON auth_spring_db.* TO 'auth_spring_user'@'%';
+CREATE USER 'auth_user'@'%' IDENTIFIED BY 'qwer1234!';
+GRANT ALL PRIVILEGES ON auth_spring_db.* TO 'auth_user'@'%';
 FLUSH PRIVILEGES;
 
 id bigint pkey auto_increment
@@ -48,8 +48,4 @@ password varchar(200) not null (암호화)
 email varchar(200) not null unique
 is_valid_email bool default false
 valid_text varchar(100) null
-create_dt datetime not null
-update_dt datetime null
-delete_dt datetime null
-
 ```

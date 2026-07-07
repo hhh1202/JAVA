@@ -14,9 +14,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.header.writers.XXssProtectionHeaderWriter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -68,13 +70,34 @@ public class CWCWebSecurityConfig {
 		http
 			.csrf(AbstractHttpConfigurer::disable)
 			.cors( x -> x.configurationSource(corsConfigurationSource()))
-			.headers( x -> x.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
+			.headers( x -> x
+					// X-XSS-Protection 헤더
+					.xssProtection(xss -> xss
+							.headerValue(XXssProtectionHeaderWriter.HeaderValue.ENABLED_MODE_BLOCK)
+					)
+					// Content Security Policy
+					.contentSecurityPolicy(csp -> csp
+							.policyDirectives(
+									"default-src 'self'; " +
+									"script-src 'self'; " +
+									"style-src 'self' 'unsafe-inline'; " +
+									"img-src 'self' data:; " +
+									"object-src 'none'; " +
+									"frame-ancestors 'none';"
+							)
+					)
+					.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
+			)
 			.authorizeHttpRequests( x -> x
 					.requestMatchers("/").permitAll()
 					.requestMatchers("/signup").permitAll()
 					.requestMatchers("/signin").permitAll()
+					.requestMatchers("/api/v1/auth/signout").authenticated()
 					.requestMatchers("/api/v1/auth/**").permitAll()
 					.anyRequest().authenticated()
+			)
+			.sessionManagement(x ->
+				x.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			)
 			.authenticationProvider(daoAuthenticationProvider())
 			.addFilterBefore(cwcAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
