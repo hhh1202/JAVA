@@ -2,6 +2,8 @@ package com.mjc813.jwtsecurity_login.jwt;
 
 import com.mjc813.jwtsecurity_login.models.auth.AuthTokenDto;
 import com.mjc813.jwtsecurity_login.models.member.IMember;
+import com.mjc813.jwtsecurity_login.models.redismember.RedisMemberDto;
+import com.mjc813.jwtsecurity_login.models.redismember.RedisMemberService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
@@ -16,8 +18,10 @@ import java.util.Date;
 
 @Component
 public class JwtUtils {
+//	@Autowired
+//	private StringRedisTemplate redisTemplate;
 	@Autowired
-	private StringRedisTemplate redisTemplate;
+	private RedisMemberService redisMemberService;
 //	@Value("${myapp.jwt.secret:thisismyjwtsecretkey!123456abcdef}")
 	private String secret = "thisismyjwtsecretkey!123456abcdef";
 //	@Value("${myapp.jwt.expireAccessToken}")
@@ -108,16 +112,32 @@ public class JwtUtils {
 		return null;
 	}
 
-	public void saveRedis(String signId, AuthTokenDto authTokenDto) {
-		this.redisTemplate.opsForValue().set(signId, authTokenDto.getRefreshToken());
+	public void saveRedis(IMember user, AuthTokenDto authTokenDto) {
+//		this.redisTemplate.opsForValue().set(signId, authTokenDto.getRefreshToken());
+		RedisMemberDto redisMemberDto = RedisMemberDto.builder()
+				.accessToken(authTokenDto.getAccessToken())
+				.refreshToken(authTokenDto.getRefreshToken()).build();
+		redisMemberDto.clone(user, true);
+		this.redisMemberService.insert(redisMemberDto);
+	}
+
+	public void updateRedis(IMember user, AuthTokenDto authTokenDto) {
+		RedisMemberDto redisMemberDto = RedisMemberDto.builder()
+				.accessToken(authTokenDto.getAccessToken())
+				.refreshToken(authTokenDto.getRefreshToken()).build();
+		redisMemberDto.clone(user, true);
+		this.redisMemberService.update(redisMemberDto);
 	}
 
 	public void removeRedis(String signId) {
-		this.redisTemplate.delete(signId);
+//		this.redisTemplate.delete(signId);
+		this.redisMemberService.deleteBySignId(signId);
 	}
 
-	public String findRedis(String signId) {
-		String value = this.redisTemplate.opsForValue().get(signId);
-		return value;
+	public RedisMemberDto findRedis(String signId) {
+//		String value = this.redisTemplate.opsForValue().get(signId);
+//		return value;
+		RedisMemberDto findDto = this.redisMemberService.findBySignId(signId);
+		return findDto;
 	}
 }

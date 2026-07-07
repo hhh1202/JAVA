@@ -11,6 +11,7 @@ import com.mjc813.jwtsecurity_login.models.auth.SignUpDto;
 import com.mjc813.jwtsecurity_login.models.member.IMember;
 import com.mjc813.jwtsecurity_login.models.member.MemberDto;
 import com.mjc813.jwtsecurity_login.models.member.MemberService;
+import com.mjc813.jwtsecurity_login.models.redismember.RedisMemberDto;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,12 +57,13 @@ public class SbSecuritySignRestController {
 		String accessToken = this.jwtUtils.generateAccessToken(signInDto.getSignId());
 		String refreshToken = this.jwtUtils.generateRefreshToken(signInDto.getSignId());
 
-//		MemberDto signMember = this.memberService.findBySignId(signInDto.getSignId());
-//		String accessToken = jwtUtils.generateToken(signMember);
+		MemberDto signMember = this.memberService.findBySignId(signInDto.getSignId());
 
 		AuthTokenDto authTokenDto = new AuthTokenDto(accessToken, refreshToken);
+
 		// 정상적으로 signin 하면 사용자 정보를 redis 저장한다.
-		this.jwtUtils.saveRedis(signInDto.getSignId(), authTokenDto);
+		this.jwtUtils.saveRedis(signMember, authTokenDto);
+
 		return ResponseEntity.status(200).body(
 				ComResponseDto.make(ResponseCode.SUCCESS, authTokenDto)
 		);
@@ -79,9 +81,12 @@ public class SbSecuritySignRestController {
 	}
 
 	@PostMapping("/refresh")
-	public ResponseEntity<ComResponseDto<AuthTokenDto>> refresh(@RequestBody RefreshAuthTokenDto authToken) {
+	public ResponseEntity<ComResponseDto<AuthTokenDto>> refresh(
+			@RequestBody RefreshAuthTokenDto authToken
+	) {
 		String signId = authToken.getSignId();
-		if ( this.jwtUtils.findRedis(signId) == null ) {
+		RedisMemberDto findDto = this.jwtUtils.findRedis(signId);
+		if ( findDto == null ) {
 			// 사인아웃 했던 유저는 refresh 토큰을 받아가면 안된다.
 			return ResponseEntity.status(500).body(
 					ComResponseDto.make(ResponseCode.AUTHORIZATION_ERROR, null)
@@ -95,6 +100,8 @@ public class SbSecuritySignRestController {
 			String newAccessToken = this.jwtUtils.generateAccessToken(signId);
 			String newRefreshToken = this.jwtUtils.generateRefreshToken(signId);
 			AuthTokenDto authTokenDto = new AuthTokenDto(newAccessToken, newRefreshToken);
+			// 정상적으로 리프레시코튼이 발급 되면 사용자 정보를 redis 수정 한다.
+			this.jwtUtils.updateRedis(findDto, authTokenDto);
 			return ResponseEntity.status(200).body(
 					ComResponseDto.make(ResponseCode.SUCCESS, authTokenDto)
 			);

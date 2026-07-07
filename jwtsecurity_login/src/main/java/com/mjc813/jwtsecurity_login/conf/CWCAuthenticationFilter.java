@@ -6,6 +6,7 @@ import com.mjc813.jwtsecurity_login.jwt.JwtIllegalException;
 import com.mjc813.jwtsecurity_login.jwt.JwtUtils;
 import com.mjc813.jwtsecurity_login.models.member.MemberDto;
 import com.mjc813.jwtsecurity_login.models.member.MemberService;
+import com.mjc813.jwtsecurity_login.models.redismember.RedisMemberDto;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
@@ -41,10 +42,11 @@ public class CWCAuthenticationFilter extends OncePerRequestFilter {
 			String jwtAccessToken = this.jwtUtils.resolveJwtTokenFromBearerToken(authHeader);
 			if ( jwtAccessToken != null ) {
 				String signId = this.jwtUtils.getSignId(jwtAccessToken);
-				if (this.jwtUtils.findRedis(signId) != null) {
-					MemberDto find = this.memberService.findBySignId(signId);
+				RedisMemberDto findDto = this.jwtUtils.findRedis(signId);
+				if ( findDto != null ) {
+//					MemberDto find = this.memberService.findBySignId(signId);
 					UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-							find, null, find.getAuthorities()
+							findDto, null, findDto.getAuthorities()
 					);
 					SecurityContextHolder.getContext().setAuthentication(auth);
 				} else {  // 사인아웃 했다면
@@ -58,6 +60,7 @@ public class CWCAuthenticationFilter extends OncePerRequestFilter {
 			log.error(e.getMessage());
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 			SecurityContextHolder.clearContext();
+			filterChain.doFilter(request, response);
 			return;
 		} catch (JwtIllegalException | JwtException e) {
 			log.error(e.getMessage());
