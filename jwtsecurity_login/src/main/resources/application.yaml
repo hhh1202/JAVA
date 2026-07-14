@@ -37,6 +37,18 @@ spring:
           min-idle: 0
           max-wait: -1ms
 
+  security:
+    oauth2:
+      client:
+        registration:
+          # 구글 (Spring Boot에서 기본 제공)
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_PASSWORD}
+            scope:
+              - profile
+              - email
+
 server:
   port: 8083
   servlet:
